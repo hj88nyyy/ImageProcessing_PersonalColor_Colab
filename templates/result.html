@@ -3,19 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Color Analysis - Result</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Analysis Result</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h2, h4 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 20px;
+            border-top: 2px solid #ddd; /* 구분선 추가 */
+            padding-top: 20px;
+        }
+        .result-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            position: relative;
+        }
+        .image-frame {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .image-frame img {
+            border-radius: 10px;
+            position: relative;
+            z-index: 1; /* 얼굴 이미지의 우선순위를 낮춤 */
+        }
+        .top-bottom-color {
+            width: 400px; /* 이미지 너비 조정 */
+            height: 40px; /* 이미지 높이 조정 */
+            display: block;
+            margin: -10px auto; /* 위아래 간격을 음수로 설정하여 걸치게 함 */
+            border-radius: 10px; /* 가장자리를 둥글게 */
+            position: relative; /* z-index를 적용하기 위해 필요 */
+            z-index: 2; /* 우선순위 설정 */ 
+        }
+        .feature-analysis {
+            margin-top: 40px;
+        }
+        .feature-analysis img {
+            display: block;
+            margin: 10px auto;
+        }
+        .color-description {
+            font-size: 18px;
+            margin-top: 10px;
+            padding: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Analysis Result</h1>
+        <h1>Analysis Result: Warm Spring</h1>
         <div class="result-section">
-            <h2>Summary of Results</h2>
-            <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" class="result-image">
-            <p><strong>Hair Type:</strong> {{ results['Hair Type'] }}</p>
-            <p><strong>Skin Type:</strong> {{ results['Skin Type'] }}</p>
-            <p><strong>Eye Type:</strong> {{ results['Eye Type'] }}</p>
-            <p><strong>Overall Type:</strong> {{ results['Overall Type'] }}</p>
+            <!-- 얼굴 위아래로 색깔 이미지 추가 -->
+            <img class="top-bottom-color" src="/static/images/Warm%20Spring.png" alt="Top Color">
+            <div class="image-frame">
+                <img src="/static/uploads/iu.jpg" alt="Uploaded Image" width="300">
+            <img class="top-bottom-color" src="/static/images/Warm%20Spring.png" alt="Bottom Color">
+            <p class="color-description">
+                {% if results['Overall Type'] == 'Bright Spring' %}
+                Known for vivid and clear color combinations that combine warmth and brightness. Best suited for those who look radiant in bold, high-saturation colors with a hint of warmth.
+                {% elif results['Overall Type'] == 'Light Spring' %}
+                Characterized by gentle and light colors that are warm and soft. It suits those who have a light, fresh appearance and glow in subtle, sunlit shades.
+                {% elif results['Overall Type'] == 'Warm Spring' %}
+                Comprises warm, golden tones with medium saturation. Ideal for individuals whose skin has a warm undertone and who are enhanced by rich, warm hues.
+                {% elif results['Overall Type'] == 'Soft Spring' %}
+                Offers a palette of muted, medium-toned colors that are warm and inviting. Perfect for those who look balanced in soft, blended shades that are neither too bright nor too dark.
+                {% elif results['Overall Type'] == 'Vivid Spring' %}
+                Represents energetic, bold, and warm colors with a strong presence. It enhances those who shine in dynamic, high-saturation tones that remain warm and glowing.
+                {% elif results['Overall Type'] == 'Bright Summer' %}
+                Combines cool and bright colors with a touch of lightness. This type is suitable for people who come alive in clear, bright tones without warmth.
+                {% elif results['Overall Type'] == 'Light Summer' %}
+                Features light and cool tones that provide a soft and fresh look. It suits individuals with delicate appearances that are amplified by pastel and airy colors.
+                {% elif results['Overall Type'] == 'Cool Summer' %}
+                Consists of cool, soft, and muted shades that are relaxing and gentle. This type is best for those with cool undertones who look harmonious in subtle, shadowy tones.
+                {% elif results['Overall Type'] == 'Soft Summer' %}
+                Offers a collection of gentle, medium-cool colors that blend seamlessly. It works well for those with a natural softness in their complexion, benefiting from a calm and understated palette.
+                {% elif results['Overall Type'] == 'Muted Summer' %}
+                Emphasizes calm, subdued cool tones with a gentle presence. It suits individuals who look their best in toned-down, sophisticated shades without strong contrast.
+                {% elif results['Overall Type'] == 'Warm Autumn' %}
+                Rich and warm, containing earthy hues that evoke the essence of fall. This palette is ideal for those who look radiant in deep, golden, and spicy shades.
+                {% elif results['Overall Type'] == 'Muted Autumn' %}
+                Features warm, soft, and slightly muted tones that are comforting and harmonious. It suits those with a warm undertone who shine in earthy, toned-down colors.
+                {% elif results['Overall Type'] == 'Deep Autumn' %}
+                Consists of deep, dark, and warm shades that create a bold and impactful look. Best for individuals who wear deep, saturated, and warm tones well.
+                {% elif results['Overall Type'] == 'Soft Autumn' %}
+                Focuses on soft, blended shades that lean towards warmth and subtlety. Perfect for individuals who appear balanced and natural in medium-to-soft warm colors.
+                {% elif results['Overall Type'] == 'Dark Autumn' %}
+                Composed of strong, deep, and rich colors that exude warmth. This type suits those who carry dark, intense tones with ease and confidence.
+                {% elif results['Overall Type'] == 'Vivid Winter' %}
+                A palette of vivid, cool, and bold colors that highlight contrast and brightness. It suits individuals who thrive in stark, high-contrast colors with a cool undertone.
+                {% elif results['Overall Type'] == 'Light Winter' %}
+                Features light, cool, and icy shades that provide clarity. It is ideal for those with lighter features who are complemented by frosty, light hues.
+                {% elif results['Overall Type'] == 'Cool Winter' %}
+                Contains deep, cool, and rich colors that create a striking appearance. It suits individuals with cool undertones who wear intense, cool shades well.
+                {% elif results['Overall Type'] == 'Clear Winter' %}
+                Made of medium-cool tones that are gentle yet vivid. It works best for those who need clarity and contrast without heavy darkness.
+                {% elif results['Overall Type'] == 'Deep Winter' %}
+                Comprises dark, cool, and intense colors that provide a dramatic and bold look. This type is suited for those with strong contrast in their features who carry deep hues beautifully.
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="details-section">
+            <div class="feature-analysis">
+                <h4>Hair Color Analysis: {{ results['Hair Type'] }}</h4>
+                <img src="{{ url_for('static', filename='images/' + results['Hair Type'] + '.png') }}" alt="Hair Color" width="200">
+                <p class="color-description">
+                    {% if results['Hair Type'] == 'Bright Spring' %}
+                    Hair appears most vibrant with warm, clear, and bright tones. Suited for individuals whose hair glows in high-saturation colors with warm undertones.
+                    {% elif results['Hair Type'] == 'Light Spring' %}
+                    Hair is best enhanced by light and sun-kissed colors. Ideal for those whose hair looks fresh and natural in subtle, warm tones.
+                    {% elif results['Hair Type'] == 'Warm Spring' %}
+                    Hair thrives in warm, golden tones with medium saturation. Perfect for individuals whose hair has a natural warmth that glows in rich hues.
+                    {% elif results['Hair Type'] == 'Soft Spring' %}
+                    Hair looks harmonious with muted, warm shades that blend seamlessly. Works for those with hair that appears balanced and natural in gentle, medium-warm colors.
+                    {% elif results['Hair Type'] == 'Vivid Spring' %}
+                    Hair stands out with bold, high-energy, warm colors. Best for those whose hair appears lively in saturated, bright tones.
+                    {% elif results['Hair Type'] == 'Bright Summer' %}
+                    Hair is complemented by cool, bright tones without warmth. Suits individuals with hair that looks best in clear, bright shades.
+                    {% elif results['Hair Type'] == 'Light Summer' %}
+                    Hair is enhanced by light, cool, and pastel colors. Suitable for those with hair that looks fresh in airy, delicate shades.
+                    {% elif results['Hair Type'] == 'Cool Summer' %}
+                    Hair benefits from cool, muted tones that are soft and calming. Ideal for individuals whose hair complements subtle, shadowy colors.
+                    {% elif results['Hair Type'] == 'Soft Summer' %}
+                    Hair matches with medium-cool, muted shades that are gentle and understated. Perfect for those with naturally soft hair that glows in blended colors.
+                    {% elif results['Hair Type'] == 'Muted Summer' %}
+                    Hair is accentuated by calm, subdued cool tones. Fits individuals whose hair harmonizes with muted, elegant colors.
+                    {% elif results['Hair Type'] == 'Warm Autumn' %}
+                    Hair is most enhanced by rich, earthy, and warm shades. Works well for those with hair that shines in deep, golden tones.
+                    {% elif results['Hair Type'] == 'Muted Autumn' %}
+                    Hair looks best with warm, muted, and earthy colors. Suitable for individuals whose hair blends with toned-down, warm hues.
+                    {% elif results['Hair Type'] == 'Deep Autumn' %}
+                    Hair thrives in deep, dark, and warm tones. Ideal for those with hair that carries deep, saturated colors gracefully.
+                    {% elif results['Hair Type'] == 'Soft Autumn' %}
+                    Hair complements soft, warm, and blended shades. Best for individuals whose hair appears natural in gentle, warm colors.
+                    {% elif results['Hair Type'] == 'Dark Autumn' %}
+                    Hair looks rich and deep in strong, warm colors. Suited for those whose hair can carry bold, intense hues.
+                    {% elif results['Hair Type'] == 'Vivid Winter' %}
+                    Hair stands out in bright, cool, and vivid colors. Fits individuals with hair that looks striking in high-contrast shades.
+                    {% elif results['Hair Type'] == 'Light Winter' %}
+                    Hair is enhanced by cool, frosty shades with lightness. Best for those with hair that looks best in icy, bright colors.
+                    {% elif results['Hair Type'] == 'Cool Winter' %}
+                    Hair benefits from deep, cool tones. Ideal for individuals whose hair shines in rich, cool hues.
+                    {% elif results['Hair Type'] == 'Clear Winter' %}
+                    Hair looks best in clear, medium-cool colors that provide contrast without excessive darkness. Perfect for those who need a touch of clarity.
+                    {% elif results['Hair Type'] == 'Deep Winter' %}
+                    Hair thrives in dark, bold, and cool shades. Suited for individuals with hair that complements deep, intense colors.
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="feature-analysis">
+                <h4>Skin Color Analysis: {{ results['Skin Type'] }}</h4>
+                <img src="{{ url_for('static', filename='images/' + results['Skin Type'] + '.png') }}" alt="Skin Color" width="200">
+                <p class="color-description">
+                    {% if results['Skin Type'] == 'Bright Spring' %}
+                    Skin glows with warm, clear, and bright colors. Ideal for those with a complexion that radiates in vivid, high-saturation tones.
+                    {% elif results['Skin Type'] == 'Light Spring' %}
+                    Skin looks fresh and luminous in soft, sunlit colors. Best for those who have a light complexion that pairs well with gentle warmth.
+                    {% elif results['Skin Type'] == 'Warm Spring' %}
+                    Skin is enhanced by warm, golden hues with medium saturation. Perfect for individuals whose skin has a natural glow in rich, warm shades.
+                    {% elif results['Skin Type'] == 'Soft Spring' %}
+                    Skin harmonizes with muted, medium-toned warm shades. Suits those whose skin appears balanced in soft, warm colors.
+                    {% elif results['Skin Type'] == 'Vivid Spring' %}
+                    Skin stands out with bold, bright, and warm tones. Best for those whose skin looks vibrant in saturated, warm shades.
+                    {% elif results['Skin Type'] == 'Bright Summer' %}
+                    Skin is complemented by cool, bright, and clear tones. Ideal for individuals whose skin comes alive in light, cool colors.
+                    {% elif results['Skin Type'] == 'Light Summer' %}
+                    Skin appears soft and fresh in light, cool shades. Best for individuals with a complexion that suits pastel, cool tones.
+                    {% elif results['Skin Type'] == 'Cool Summer' %}
+                    Skin benefits from cool, muted colors that are soft and gentle. Ideal for those with skin that suits shadowy, cool hues.
+                    {% elif results['Skin Type'] == 'Soft Summer' %}
+                    Skin blends well with medium-cool, soft shades. Perfect for those whose skin complements gentle, understated colors.
+                    {% elif results['Skin Type'] == 'Muted Summer' %}
+                    Skin looks best in calm, subdued cool tones. Suitable for individuals with a complexion that fits muted, sophisticated colors.
+                    {% elif results['Skin Type'] == 'Warm Autumn' %}
+                    Skin is highlighted by warm, rich, and earthy tones. Best for those whose skin glows in deep, golden hues.
+                    {% elif results['Skin Type'] == 'Muted Autumn' %}
+                    Skin suits warm, muted, earthy colors. Ideal for those whose complexion blends well with toned-down, warm hues.
+                    {% elif results['Skin Type'] == 'Deep Autumn' %}
+                    Skin looks radiant in deep, dark, and warm tones. Best for individuals whose skin thrives in rich, saturated colors.
+                    {% elif results['Skin Type'] == 'Soft Autumn' %}
+                    Skin harmonizes with soft, warm shades. Perfect for those who look natural in medium-to-soft, warm tones.
+                    {% elif results['Skin Type'] == 'Dark Autumn' %}
+                    Skin appears bold and defined in strong, deep, warm colors. Best for those whose skin can carry intense, warm hues.
+                    {% elif results['Skin Type'] == 'Vivid Winter' %}
+                    Skin thrives in high-contrast, bright, and cool colors. Suitable for individuals whose complexion looks striking in cool, bold shades.
+                    {% elif results['Skin Type'] == 'Light Winter' %}
+                    Skin looks bright and clear in frosty, cool tones. Best for those with skin that glows in icy, light hues.
+                    {% elif results['Skin Type'] == 'Cool Winter' %}
+                    Skin benefits from deep, cool shades. Ideal for individuals whose skin suits rich, intense, cool colors.
+                    {% elif results['Skin Type'] == 'Clear Winter' %}
+                    Skin shines in medium-cool tones that are vivid and clear. Best for those who need clarity and brightness without excessive darkness.
+                    {% elif results['Skin Type'] == 'Deep Winter' %}
+                    Skin complements dark, bold, and cool hues. Suited for those with skin that carries deep, intense colors beautifully.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="feature-analysis">
+                <h4>Eye Color Analysis: {{ results['Eye Type'] }}</h4>
+                <img src="{{ url_for('static', filename='images/' + results['Eye Type'] + '.png') }}" alt="Eye Color" width="200">
+                <p class="color-description">
+                    {% if results['Eye Type'] == 'Bright Spring' %}
+                    Eyes shine with bright, warm, and vivid colors. Best for individuals whose eyes are highlighted by high-saturation, warm tones.
+                    {% elif results['Eye Type'] == 'Light Spring' %}
+                    Eyes look fresh and natural in light, warm hues. Ideal for those whose eyes sparkle in gentle, sunlit colors.
+                    {% elif results['Eye Type'] == 'Warm Spring' %}
+                    Eyes are enhanced by warm, golden tones. Perfect for those whose eyes look radiant in rich, warm shades.
+                    {% elif results['Eye Type'] == 'Soft Spring' %}
+                    Eyes appear harmonious with muted, medium-toned colors. Suits those whose eyes look best in soft, warm hues.
+                    {% elif results['Eye Type'] == 'Vivid Spring' %}
+                    Eyes are vibrant in bold, bright, and warm tones. Ideal for individuals with eyes that pop in high-energy, warm shades.
+                    {% elif results['Eye Type'] == 'Bright Summer' %}
+                    Eyes are emphasized by cool, bright, and light tones. Best for those whose eyes glow in clear, cool colors.
+                    {% elif results['Eye Type'] == 'Light Summer' %}
+                    Eyes look soft and refreshed in light, cool colors. Suitable for those with eyes that shine in pastel, cool tones.
+                    {% elif results['Eye Type'] == 'Cool Summer' %}
+                    Eyes benefit from cool, soft, and shadowy shades. Ideal for individuals with eyes that suit gentle, cool hues.
+                    {% elif results['Eye Type'] == 'Soft Summer' %}
+                    Eyes blend well with medium-cool, muted tones. Perfect for those whose eyes have a natural softness highlighted by understated colors.
+                    {% elif results['Eye Type'] == 'Muted Summer' %}
+                    Eyes are enhanced by calm, subdued cool tones. Suitable for those whose eyes match muted, cool colors.
+                    {% elif results['Eye Type'] == 'Warm Autumn' %}
+                    Eyes look rich and warm in earthy, deep tones. Best for those with eyes that glow in golden, warm hues.
+                    {% elif results['Eye Type'] == 'Muted Autumn' %}
+                    Eyes appear natural in warm, muted tones. Ideal for those with eyes that suit earthy, soft colors.
+                    {% elif results['Eye Type'] == 'Deep Autumn' %}
+                    Eyes thrive in deep, dark, and warm colors. Best for individuals whose eyes are striking in saturated, rich hues.
+                    {% elif results['Eye Type'] == 'Soft Autumn' %}
+                    Eyes match with soft, blended, warm colors. Suitable for those whose eyes have a natural warmth that glows in medium tones.
+                    {% elif results['Eye Type'] == 'Dark Autumn' %}
+                    Eyes stand out in bold, deep, warm colors. Perfect for those whose eyes carry strong, warm hues.
+                    {% elif results['Eye Type'] == 'Vivid Winter' %}
+                    Eyes shine in bright, high-contrast cool tones. Best for those whose eyes look striking in bold, cool colors.
+                    {% elif results['Eye Type'] == 'Light Winter' %}
+                    Eyes appear bright and clear in frosty, cool tones. Suitable for those whose eyes sparkle in light, cool colors.
+                    {% elif results['Eye Type'] == 'Cool Winter' %}
+                    Eyes are emphasized by deep, cool shades. Best for those with eyes that stand out in rich, intense cool tones.
+                    {% elif results['Eye Type'] == 'Clear Winter' %}
+                    Eyes benefit from clear, medium-cool colors that highlight contrast. Best for those who need clarity in their look.
+                    {% elif results['Eye Type'] == 'Deep Winter' %}
+                    Eyes look dramatic and bold in dark, cool hues. Suitable for individuals whose eyes thrive in deep, intense colors.
+                    {% endif %}
+                </p>
+            </div>
         </div>
     </div>
 </body>

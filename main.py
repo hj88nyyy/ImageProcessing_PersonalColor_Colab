@@ -84,6 +84,16 @@ def result(filename):
         "Eye Type": determine_seasonal_type(diagnose_color_properties(eye_hsv[0], eye_hsv[2], eye_clear_dull, eye_hsv[1])),
         "Overall Type": overall_type
     }
+    
+    # 더미데이터
+    '''
+    results = {
+        "Hair Type": "Warm Spring",
+        "Skin Type": "Warm Spring",
+        "Eye Type": "Warm Spring",
+        "Overall Type": "Warm Spring"
+    }
+    '''
 
     return render_template('result.html', filename=filename, results=results)
 
