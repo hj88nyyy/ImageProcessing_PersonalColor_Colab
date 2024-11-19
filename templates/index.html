@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Color Analysis - Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #495057;
+            font-size: 42px;
+            margin-bottom: 30px;
+        }
+        form {
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        label {
+            font-size: 18px;
+            color: #6c757d;
+            margin-bottom: 10px;
+            display: block;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+        .custom-file-upload:hover {
+            background-color: #5a6268;
+        }
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        .info-column {
+            width: 45%;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        .color-type {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+        .color-type img {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 15px;
+            text-align: left;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Color Analysis</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="file">Choose an Image File:</label>
+            <label class="custom-file-upload">
+                <input type="file" id="file" name="file" required>
+                Select Image
+            </label>
+            <br>
+            <button type="submit">Analyze</button>
+        </form>
+        <div class="info-section">
+            <div class="info-column">
+                <h2>20 Types of Personal Color</h2>
+                <ul>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Bright Spring.png') }}" alt="Bright Spring">
+                        <strong>Bright Spring</strong>: Composed of vivid and bright color combinations.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Light Spring.png') }}" alt="Light Spring">
+                        <strong>Light Spring</strong>: Characterized by bright and soft tones.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Warm Spring.png') }}" alt="Warm Spring">
+                        <strong>Warm Spring</strong>: Consists of warm and soft hues.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Soft Spring.png') }}" alt="Soft Spring">
+                        <strong>Soft Spring</strong>: Provides a gentle feeling with medium-toned colors.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Vivid Spring.png') }}" alt="Vivid Spring">
+                        <strong>Vivid Spring</strong>: Represents vibrant and energetic color combinations.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Bright Summer.png') }}" alt="Bright Summer">
+                        <strong>Bright Summer</strong>: A palette of bright and cool colors.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Light Summer.png') }}" alt="Light Summer">
+                        <strong>Light Summer</strong>: Composed of light and bright tones.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Cool Summer.png') }}" alt="Cool Summer">
+                        <strong>Cool Summer</strong>: Characterized by cool and soft colors.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Soft Summer.png') }}" alt="Soft Summer">
+                        <strong>Soft Summer</strong>: Made up of gentle, medium-toned colors.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Muted Summer.png') }}" alt="Muted Summer">
+                        <strong>Muted Summer</strong>: A palette with calm and subdued hues.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Warm Autumn.png') }}" alt="Warm Autumn">
+                        <strong>Warm Autumn</strong>: Contains warm and rich tones.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Muted Autumn.png') }}" alt="Muted Autumn">
+                        <strong>Muted Autumn</strong>: Characterized by soft, subdued warm tones.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Deep Autumn.png') }}" alt="Deep Autumn">
+                        <strong>Deep Autumn</strong>: Consists of deep and dark tones.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Soft Autumn.png') }}" alt="Soft Autumn">
+                        <strong>Soft Autumn</strong>: Characterized by soft and calm colors.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Dark Autumn.png') }}" alt="Dark Autumn">
+                        <strong>Dark Autumn</strong>: Made up of strong and deep hues.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Vivid Winter.png') }}" alt="Vivid Winter">
+                        <strong>Vivid Winter</strong>: Composed of vivid and cool color combinations.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Light Winter.png') }}" alt="Light Winter">
+                        <strong>Light Winter</strong>: Characterized by light and cool tones.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Cool Winter.png') }}" alt="Cool Winter">
+                        <strong>Cool Winter</strong>: A palette of deep, cool-toned colors.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Clear Winter.png') }}" alt="Clear Winter">
+                        <strong>Clear Winter</strong>: Composed of gentle, medium-toned cool colors.
+                    </li>
+                    <li class="color-type">
+                        <img src="{{ url_for('static', filename='images/Deep Winter.png') }}" alt="Deep Winter">
+                        <strong>Deep Winter</strong>: A palette of dark and cool hues.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

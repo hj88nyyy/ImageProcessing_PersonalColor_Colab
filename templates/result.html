@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Color Analysis - Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Analysis Result</h1>
+        <div class="result-section">
+            <h2>Summary of Results</h2>
+            <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" class="result-image">
+            <p><strong>Hair Type:</strong> {{ results['Hair Type'] }}</p>
+            <p><strong>Skin Type:</strong> {{ results['Skin Type'] }}</p>
+            <p><strong>Eye Type:</strong> {{ results['Eye Type'] }}</p>
+            <p><strong>Overall Type:</strong> {{ results['Overall Type'] }}</p>
+        </div>
+    </div>
+</body>
+</html>
