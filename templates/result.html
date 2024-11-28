@@ -64,13 +64,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Analysis Result: Warm Spring</h1>
+        <h1>Analysis Result: {{ results['Overall Type'] }}</h1>
         <div class="result-section">
             <!-- 얼굴 위아래로 색깔 이미지 추가 -->
-            <img class="top-bottom-color" src="/static/images/Warm%20Spring.png" alt="Top Color">
+            <img class="top-bottom-color" src="{{ url_for('static', filename='images/' + results['Overall Type'] + '.png') }}" alt="Top Color">
             <div class="image-frame">
-                <img src="/static/uploads/iu.jpg" alt="Uploaded Image" width="300">
-            <img class="top-bottom-color" src="/static/images/Warm%20Spring.png" alt="Bottom Color">
+                <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" width="300">
+            <img class="top-bottom-color" src="{{ url_for('static', filename='images/' + results['Overall Type'] + '.png') }}" alt="Bottom Color">
             <p class="color-description">
                 {% if results['Overall Type'] == 'Bright Spring' %}
                 Known for vivid and clear color combinations that combine warmth and brightness. Best suited for those who look radiant in bold, high-saturation colors with a hint of warmth.
